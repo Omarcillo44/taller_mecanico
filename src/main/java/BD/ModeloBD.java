@@ -1,5 +1,4 @@
 package BD;
-import CRUD.ModeloCRUD;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -15,7 +14,13 @@ public class ModeloBD {
 
     protected ModeloBD() throws SQLException {
         bd = new Conn_PGSQL(); //Se crea una nueva instancia para la conexión
+        bd.conectar(); //Se crea la conexión
         System.out.println("Conexión creada");
+    }
+
+    public void cierraConexion() throws SQLException {
+        bd.cierraConexion();//Se crea una nueva instancia para la conexión
+        System.out.println("Conexión cerrada");
     }
 
     //Método para establecer el comando SQL y el tipo de operación (CRUD)
@@ -37,7 +42,6 @@ public class ModeloBD {
         Para ello se usan los metadatos sobre los resultados.
         */
         ResultSetMetaData metaData;
-        bd.conectar(); //Se crea la conexión
 
         switch (tipoOper) { //Según la operación del CRUD, se cambia de opc
 
