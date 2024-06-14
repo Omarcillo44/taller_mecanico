@@ -28,15 +28,15 @@ public class ControladorBD {
          * por ello se requiere una misma instnacia para todo*/
     }
 
-    public void ejecutaQuery(String comando, String tipo_oper) throws SQLException {
+    public void ejecutaQuery(String comando, String tipo_oper, ModeloBD operBD) throws SQLException {
         //Instancia de la clase modelo_crud para hacer una nueva operación
-        ModeloBD oper_bd = new ModeloBD();
-        oper_bd.setComando(comando, tipo_oper);
+        operBD.setComando(comando, tipo_oper);
         contenedor = new ArrayList<>();
-        contenedor = oper_bd.OperacionBD();
+        contenedor = operBD.OperacionBD();
     }
-    public void realizaOperacion(String comando, String operacion) throws SQLException {
-        ejecutaQuery(comando, operacion); //método heredado de la clase ControladorBD
+
+    public void realizaOperacion(String comando, String operacion, ModeloBD modeloBD) throws SQLException {
+        ejecutaQuery(comando, operacion, modeloBD); //método heredado de la clase ControladorBD
     }
     public List<String> getContenedor() {
         return contenedor;

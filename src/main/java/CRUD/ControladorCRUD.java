@@ -1,5 +1,7 @@
 package CRUD;
 import BD.ControladorBD;
+import BD.ModeloBD;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.sql.SQLException;
@@ -8,7 +10,10 @@ import java.util.List;
 
 import static CRUD.VistaCRUD.*;
 
-public class ControladorCRUD extends ControladorBD{
+public class ControladorCRUD extends ControladorBD {
+
+    private ModeloCRUD operBD; // Instancia de ModeloBD (en realidad es ModeloCRUD)
+
     private static List<String> listaResultados = new ArrayList<>();
 
     @FXML
@@ -20,9 +25,9 @@ public class ControladorCRUD extends ControladorBD{
     @FXML
     private Button btn_Alta, btn_Baja, btn_Cambio, btn_Consulta;
 
-    String id,nombre, texto_Alerta;
+    String id, nombre, texto_Alerta;
 
-    public void iniciar_CRUD(){
+    public void iniciar_CRUD() {
         VistaCRUD.launch();
     }
 
@@ -34,89 +39,66 @@ public class ControladorCRUD extends ControladorBD{
         listaResultados = controladorActual.getContenedor();
     }
 
-    /*Métodos para controlar la interfaz*/
+    public ControladorCRUD() throws SQLException {
+        operBD = new ModeloCRUD();
+    }
+
+    public void iniciarAplicacion(String[] args) {
+        VistaCRUD.launchApp(args);
+    }
+
+    public void onClickAlta(ActionEvent actionEvent) {
+    }
+
+    public void onClickBaja(ActionEvent actionEvent) {
+    }
+
+    public void onClickCambio(ActionEvent actionEvent) {
+    }
+
     @FXML
-    /*Botón de alta*/
-    public void onClickAlta() throws SQLException {
+    public void onClickConsulta() {
+        String id = textf_ID.getText(); // Obtener el ID desde el campo de texto
 
-        nombre = textf_Nombre.getText(); //Se obtiene el nombre
-        id = textf_ID.getText(); //Se obtiene el ID
-
-        // Validar que el nombre no esté vacío
-        if (nombre == null || nombre.trim().isEmpty()) {
-            mostrarAlertError("No puede haber campos vacíos");
-            return;
-        }
-
-        // Validar el ID
         try {
-            Integer.parseInt(id);
-            // El valor es un número entero, realizar la operación
-            realizaOperacion("INSERT INTO gente(id, nombre) VALUES (" + id + ", '" + nombre + "');", "alta");
-        } catch (NumberFormatException | SQLException e) {
-            // Mostrar un mensaje de error si el ID no es un número
-            mostrarAlertError("Revise los datos");
+            int numero = Integer.parseInt(id); // Convertir el ID a entero
+
+            // Realizar la consulta en el modelo y obtener resultados
+            List<String> resultados = operBD.consultarPersonaPorID(id);
+
+            if (!resultados.isEmpty()) {
+                // Mostrar el resultado en la interfaz (suponiendo que resultados.get(1) es el nombre)
+                String nombre = resultados.get(1);
+                // Actualizar el campo de texto de nombre o cualquier otro componente de la interfaz
+                // textf_Nombre.setText(nombre);
+                mostrarAlertInfo("Consulta exitosa: Nombre encontrado -> " + nombre);
+            } else {
+                mostrarAlertError("No se encontró ninguna persona con el ID especificado.");
+            }
+
+        } catch (NumberFormatException e) {
+            mostrarAlertError("El ID debe ser un número entero válido.");
+        } catch (SQLException e) {
+            mostrarAlertError("Error al consultar en la base de datos: " + e.getMessage());
         }
     }
 
-    /*Botón de consulta*/
-    public void onClickConsulta() throws SQLException {
-
-        id = textf_ID.getText(); //Se obtiene el ID
-
-        try {
-            Integer.parseInt(id);
-            // El valor es un número entero, realizar la operación
-            realizaOperacion("Select * from gente where id = " + id,"consulta");
-            actualizaResultados(); //La lista local de resultados se actualiza
-            textf_Nombre.setText(listaResultados.get(1));
-        } catch (NumberFormatException | SQLException e) {
-            // Mostrar un mensaje de error si el ID no es un número
-            mostrarAlertError("Revise los datos");
-        }
+    // Método para mostrar un cuadro de diálogo de información
+    private void mostrarAlertInfo(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
 
-    /*Botón de baja*/
-    public void onClickBaja() {
-
-        id = textf_ID.getText(); //Se obtiene el ID
-
-        // Validar el ID
-        try {
-            Integer.parseInt(id);
-            // El valor es un número entero, realizar la operación
-            realizaOperacion("delete from gente where id = " + id,"baja");
-        } catch (NumberFormatException | SQLException e) {
-            // Mostrar un mensaje de error si el ID no es un número
-            mostrarAlertError("Revise los datos");
-        }
-
-        mostrarAlertInfo("Se dio de baja a la persona con ID = " + id);
+    // Método para mostrar un cuadro de diálogo de error
+    private void mostrarAlertError(String mensaje) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error");
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
     }
-
-    /*Botón de cambio*/
-    public void onClickCambio() throws SQLException {
-
-        nombre = textf_Nombre.getText(); //Se obtiene el nombre
-        id = textf_ID.getText(); //Se obtiene el ID
-
-        // Validar que el nombre no esté vacío
-        if (nombre == null || nombre.trim().isEmpty()) {
-            mostrarAlertError("No puede haber campos vacíos");
-            return;
-        }
-
-        // Validar el ID
-        try {
-            Integer.parseInt(id);
-            // El valor es un número entero, realizar la operación
-            realizaOperacion("UPDATE gente SET nombre = '" + nombre + "' WHERE id = " + id, "cambio");
-        } catch (NumberFormatException | SQLException e) {
-            // Mostrar un mensaje de error si el ID no es un número
-            mostrarAlertError("Revise los datos");
-        }
-
-
-    }
-
 }
+
