@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class VistaCRUD extends Application {
+    private static ControladorCRUD controladorCRUD;
+
     @Override
     public void start(Stage stage2) throws IOException, SQLException {
         FXMLLoader fxmlLoader = new FXMLLoader(VistaCRUD.class.getResource("vista_crud.fxml"));
@@ -17,6 +19,17 @@ public class VistaCRUD extends Application {
         stage2.setTitle("CRUD Básico | PGSQL");
         stage2.setScene(scene2);
         stage2.show();
+
+        controladorCRUD = fxmlLoader.getController();
+
+        stage2.setOnCloseRequest(event -> {
+            try {
+                controladorCRUD.cerrarConexionBD();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
+
     }
 
     @FXML

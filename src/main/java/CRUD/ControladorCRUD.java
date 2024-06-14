@@ -40,13 +40,19 @@ public class ControladorCRUD extends ControladorBD {
     }
 
     public ControladorCRUD() throws SQLException {
-        operBD = new ModeloCRUD();
+        operBD = ModeloCRUD.getInstance(); // Obtener la instancia única del modelo
     }
 
     public void iniciarAplicacion(String[] args) {
         VistaCRUD.launchApp(args);
     }
 
+    // Método para cerrar la conexión a la base de datos
+    public void cerrarConexionBD() throws SQLException {
+        if (operBD != null) {
+            operBD.cierraConexion();
+        }
+    }
     public void onClickAlta(ActionEvent actionEvent) {
     }
 
