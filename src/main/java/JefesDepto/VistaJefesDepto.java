@@ -1,18 +1,18 @@
-package CRUD;
+package JefesDepto;
+
 import javafx.application.Application;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.sql.SQLException;
 
-public class VistaCRUD extends Application {
+import java.io.IOException;
+
+public class VistaJefesDepto extends Application {
     @Override
-    public void start(Stage stage2) throws IOException, SQLException {
-        FXMLLoader fxmlLoader = new FXMLLoader(VistaCRUD.class.getResource("vista_crud.fxml"));
+    public void start(Stage stage2) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(VistaJefesDepto.class.getResource("vista_crud.fxml"));
         Scene scene2 = new Scene(fxmlLoader.load());
         stage2.setTitle("CRUD Básico | PGSQL");
         stage2.setScene(scene2);
@@ -35,10 +35,6 @@ public class VistaCRUD extends Application {
         alert.setTitle("Error");
         alert.setContentText(texto);
         alert.showAndWait();
-    }
-
-    public static void launchApp(String[] args) {
-        launch(args);
     }
 
 }
