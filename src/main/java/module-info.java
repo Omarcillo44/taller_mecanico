@@ -7,4 +7,7 @@ module com.example.taller_mecanico {
     exports CRUD;
     opens CRUD to javafx.fxml;
 
+    exports JefesDepto;
+    opens JefesDepto to javafx.fxml;
+
 }

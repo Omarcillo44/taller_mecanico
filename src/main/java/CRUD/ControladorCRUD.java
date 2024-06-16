@@ -42,7 +42,6 @@ public class ControladorCRUD extends ControladorBD {
     public ControladorCRUD() throws SQLException {
         operBD = ModeloCRUD.getInstance(); // Obtener la instancia única del modelo
     }
-
     public void iniciarAplicacion(String[] args) {
         VistaCRUD.launchApp(args);
     }

@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class VistaCRUD extends Application {
     private static ControladorCRUD controladorCRUD;
@@ -41,6 +42,15 @@ public class VistaCRUD extends Application {
         alert.showAndWait();
     }
 
+    public static void mostrarAlertWarning(String texto) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setHeaderText(null);
+        alert.setTitle("Advertencia");
+        alert.setContentText(texto);
+        alert.showAndWait();
+    }
+
+
     @FXML
     public static void mostrarAlertError(String texto) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -49,6 +59,21 @@ public class VistaCRUD extends Application {
         alert.setContentText(texto);
         alert.showAndWait();
     }
+
+    @FXML
+    public static boolean mostrarAlertConfirmacion(String texto) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setHeaderText(null);
+        alert.setTitle("Confirmación");
+        alert.setContentText(texto);
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == ButtonType.YES;
+    }
+
+
+
 
     public static void launchApp(String[] args) {
         launch(args);

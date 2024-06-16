@@ -1,40 +1,63 @@
 package JefesDepto;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class VistaJefesDepto extends Application {
+
+    private static ControladorJefesDepto controladorJefesDepto;
+
+
+
     @Override
-    public void start(Stage stage2) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(VistaJefesDepto.class.getResource("vista_crud.fxml"));
-        Scene scene2 = new Scene(fxmlLoader.load());
-        stage2.setTitle("CRUD Básico | PGSQL");
-        stage2.setScene(scene2);
-        stage2.show();
+    public void start(Stage jefesDepto) throws IOException {
+        FXMLLoader mainLoader  = new FXMLLoader(VistaJefesDepto.class.getResource("jefesDepto.fxml"));
+        Scene infoServicio = new Scene(mainLoader.load());
+        jefesDepto.setTitle("Taller Mecánico | Jefe de Departamento");
+        jefesDepto.setScene(infoServicio);
+        jefesDepto.setResizable(false);
+        jefesDepto.setMaximized(true);
+        jefesDepto.show();
+
+        controladorJefesDepto = mainLoader.getController();
+
+        jefesDepto.setOnCloseRequest(event -> {
+            try {
+                controladorJefesDepto.cerrarConexionBD();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
-    @FXML
-    public static void mostrarAlertInfo(String texto) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setHeaderText(null);
-        alert.setTitle("Información");
-        alert.setContentText(texto);
-        alert.showAndWait();
+    // Método estático para recargar la escena principal
+
+    public static void recargarEscenaPrincipal() {
+        controladorJefesDepto.recargaEscenaPrincipal();
     }
 
-    @FXML
-    public static void mostrarAlertError(String texto) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setHeaderText(null);
-        alert.setTitle("Error");
-        alert.setContentText(texto);
-        alert.showAndWait();
+    public static void muestraVentanaAvance() throws IOException {
+        Stage newStage = new Stage();
+        FXMLLoader submoduleLoader = new FXMLLoader(VistaJefesDepto.class.getResource("avance.fxml"));
+        Parent root = submoduleLoader.load();
+
+        // Aquí obtenemos el controlador del nuevo FXML
+        ControladorJefesDepto submoduleController = submoduleLoader.getController();
+
+        Scene avanceServicio = new Scene(root);
+        newStage.setTitle("Informar avance | Jefe de Departamento");
+        newStage.setScene(avanceServicio);
+        newStage.setResizable(false);
+        newStage.show();
     }
 
+    public static void launchApp(String[] args) {
+        launch(args);
+    }
 }
