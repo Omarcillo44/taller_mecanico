@@ -31,7 +31,7 @@ public class ControladorServicios extends ControladorBD{
     @FXML private TextArea descGeneral, descMeca, descHoja, descPint, descElect;
     @FXML private RadioButton tiposServ, servRepa, servMante;
     @FXML private CheckBox checkMeca, checkHoja, checkPint, checkElect;
-    @FXML private DatePicker fechaTram, fechaIngr;
+    @FXML private DatePicker fechaTram, fechaIngr, fechaEntr;
     @FXML private ToggleGroup tipoServ;
     @FXML private ComboBox<String> comboAuto;
 
@@ -61,7 +61,7 @@ public class ControladorServicios extends ControladorBD{
     @FXML
     public void initialize(){
         comboAuto.valueProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("seleccionado: " + newValue);
+            //System.out.println("seleccionado: " + newValue);
             try {
                 if(comboAuto.getValue() != null)
                     buscarVeh_click(newValue);
@@ -71,6 +71,7 @@ public class ControladorServicios extends ControladorBD{
         });
     }
 
+    // metodo para buscar la informacion del cliente seleccionado con la RFC
     @FXML
     private void buscarCli_click() throws IOException {
         RFC = "";
@@ -97,6 +98,7 @@ public class ControladorServicios extends ControladorBD{
         }
     }
 
+    // metodo para buscar y crear el combobox con los vehiculos del cliente
     private void consultaVehPlacas() throws IOException {
         try {
             List<String> resultados = operBD.consultaPlacas(RFC);
@@ -114,6 +116,7 @@ public class ControladorServicios extends ControladorBD{
         }
     }
 
+    // metodo para buscar la informacion del vehiculo seleccionado en el combobox
     @FXML
     private void buscarVeh_click(String newValue) throws IOException {
         try {
@@ -135,7 +138,7 @@ public class ControladorServicios extends ControladorBD{
         }
     }
 
-    // metodo para verificar so esta activado un checkbo (se va a realizar un servicio o no)
+    // metodo para verificar si esta activado un checkbo (se va a realizar un servicio o no)
     @FXML
     private void revisarServ_click() throws IOException{
         if(checkMeca.isSelected()) //chechbox trabajos mecanicos
@@ -167,17 +170,17 @@ public class ControladorServicios extends ControladorBD{
     // metodo para saber que tipo de servicio se esta selecionando reparacion o mantenimiento
     @FXML
     private void obtenerServ() throws IOException{
-        if(servRepa.isSelected())
+        if(servRepa.isSelected()) // servicio de tipo reparacion
             numTipoServ = 1;
-        else if (servMante.isSelected())
+        else if (servMante.isSelected()) // servicio de tipo mantenimiento
             numTipoServ = 2;
     }
 
     // metodo para dar de alta el servicio :V
     @FXML
     private void darAltaServ_click() throws IOException{
-
-        if(RFC==null || comboAuto.getValue()==null || numTipoServ==0 || fechaTram.getValue()==null || fechaIngr.getValue()==null || descGeneral.getText().isEmpty()){
+        // validar que los datos obligatorios esten llenos
+        if(RFC==null || comboAuto.getValue()==null || numTipoServ==0 || fechaTram.getValue()==null || fechaEntr.getValue()==null || fechaIngr.getValue()==null || descGeneral.getText().isEmpty()){
             mostrarAlertError("Introduce todos los datos necesarios");
         }
         else{
@@ -185,6 +188,7 @@ public class ControladorServicios extends ControladorBD{
             String insertPlaca = comboAuto.getValue();
             String insertTipo = String.valueOf(numTipoServ);
             String insertFechT = String.valueOf(fechaTram.getValue());
+            String insertFechE = String.valueOf(fechaEntr.getValue());
             String insertFechI = String.valueOf(fechaIngr.getValue());
             String insertDesG = descGeneral.getText();
             String insertDesM = "";
@@ -192,31 +196,32 @@ public class ControladorServicios extends ControladorBD{
             String insertDesP = "";
             String insertDesE = "";
             // Ajustar los datos para ingresar null si no hay texto en las descripciones
-            if(descMeca.getText().isEmpty()) // verificar si la descipcion esta vacio
+            if(descMeca.getText().isEmpty()) // verificar si la descipcion mecanico esta vacio
                 insertDesM = "null";
             else
                 insertDesM = "'" + descMeca.getText() + "'";
-            if(descHoja.getText().isEmpty()) // verificar si la descipcion esta vacio
+            if(descHoja.getText().isEmpty()) // verificar si la descipcion  hojalateria esta vacio
                 insertDesH = "null";
             else
                 insertDesH = "'" + descHoja.getText() + "'";
-            if(descPint.getText().isEmpty()) // verificar si la descipcion esta vacio
+            if(descPint.getText().isEmpty()) // verificar si la descipcion pintura esta vacio
                 insertDesP = "null";
             else
                 insertDesP = "'" + descPint.getText() + "'";
-            if(descElect.getText().isEmpty()) // verificar si la descipcion esta vacio
+            if(descElect.getText().isEmpty()) // verificar si la descipcion electrico esta vacio
                 insertDesE = "null";
             else
                 insertDesE = "'" + descElect.getText() + "'";
 
-            introducirDatosAlta(insertRfc,insertPlaca,insertTipo,insertFechT,insertFechI,insertDesG,insertDesM,insertDesH,insertDesP,insertDesE);
+            introducirDatosAlta(insertRfc,insertPlaca,insertTipo,insertFechT,insertFechE,insertFechI,insertDesG,insertDesM,insertDesH,insertDesP,insertDesE);
         }
     }
 
+    // metodo para insertar los datos en la base de datos
     @FXML
-    private void introducirDatosAlta(String Rfc,String Placa,String Tipo,String FechT,String FechI,String DesG,String DesM,String DesH,String DesP,String DesE) throws IOException {
+    private void introducirDatosAlta(String Rfc,String Placa,String Tipo,String FechT,String FechE,String FechI,String DesG,String DesM,String DesH,String DesP,String DesE) throws IOException {
         try {
-            operBD.insertarDatosAlta(Rfc,Placa,Tipo,FechT,FechI,DesG,DesM,DesH,DesP,DesE); // realiza la consulta por el rfc
+            operBD.insertarDatosAlta(Rfc,Placa,Tipo,FechT,FechE,FechI,DesG,DesM,DesH,DesP,DesE); // realiza la consulta por el rfc
             mostrarAlertInfo("Se ha dado de alta el servicio");
             limpiarCamposAgendar();
         } catch (SQLException e) {
@@ -224,6 +229,7 @@ public class ControladorServicios extends ControladorBD{
         }
     }
 
+    // metodo para limpiar todos los campos
     private void limpiarCamposAgendar(){
         txtRfcCli.setText("");
         txtCorreoCli.setText("");

@@ -22,9 +22,9 @@ public class ModeloServicios extends BD.ModeloBD{
     }
 
     //insertar un nuevo servicio
-    public List<String> insertarDatosAlta(String Rfc,String Placa,String Tipo,String FechT,String FechI,String DesG,String DesM,String DesH,String DesP,String DesE) throws SQLException {
+    public List<String> insertarDatosAlta(String Rfc,String Placa,String Tipo,String FechT,String FechE,String FechI,String DesG,String DesM,String DesH,String DesP,String DesE) throws SQLException {
         // Construyes la consulta SQL con los parámetros proporcionados
-        String comando = "insert into servicio values ('"+Rfc+"','"+Placa+"',"+Tipo+",'"+FechT+"',null,'"+FechI+"','"+DesG+"',null,"+DesM+","+DesH+","+DesP+","+DesE+",false,false,false);";
+        String comando = "insert into servicio values ('"+Rfc+"','"+Placa+"',"+Tipo+",'"+FechT+"','"+FechE+"','"+FechI+"','"+DesG+"',null,"+DesM+","+DesH+","+DesP+","+DesE+",false,false,false);";
         setComando(comando, "alta");
         return OperacionBD();
     }
