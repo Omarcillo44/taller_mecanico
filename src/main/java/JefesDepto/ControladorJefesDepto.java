@@ -125,15 +125,12 @@ public class ControladorJefesDepto extends ControladorBD implements Initializabl
                     porcAv = listaResultados.get(16);
                 }
             } else {
-                mostrarAlertError("No hay trabajos asignados");
-                mostrarAlertInfo("¿Desea volver a buscar trabajos disponibles?");
-                Platform.runLater(() -> {
-                    try {
-                         new VistaAcceso().start(new Stage());
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                mostrarAlertError("No hay trabajos asignados");
+                Platform.runLater(() -> {
+                    Platform.exit();
+
+                    //Cerrar stage actual
                 });
             }
         } catch (IndexOutOfBoundsException e) {
