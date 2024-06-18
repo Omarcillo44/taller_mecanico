@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Servicios.ControladorServicios">
+    <children>
+        <ToolBar prefWidth="1280.0">
+            <items>
+                <Label prefHeight="36.0" prefWidth="387.0" text="Servicios agendados">
+                    <font>
+                        <Font name="SansSerif Bold Italic" size="30.0" />
+                    </font>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <padding>
+                        <Insets left="20.0" right="50.0" />
+                    </padding>
+                </Label>
+                <Separator orientation="VERTICAL" />
+                <HBox alignment="CENTER" prefHeight="56.0" prefWidth="841.0">
+                    <children>
+                        <Button fx:id="btnInformar" mnemonicParsing="false" text="Volver al menú">
+                            <font>
+                                <Font name="SansSerif Regular" size="30.0" />
+                            </font>
+                        </Button>
+                        <Separator orientation="VERTICAL">
+                            <padding>
+                                <Insets left="20.0" right="20.0" />
+                            </padding>
+                        </Separator>
+                        <Button fx:id="btnReportar" mnemonicParsing="false" text="Agendar servicio">
+                            <font>
+                                <Font name="SansSerif Regular" size="30.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </HBox>
+            </items>
+        </ToolBar>
+        <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0">
+            <children>
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0">
+                    <children>
+                        <ListView prefHeight="654.0" prefWidth="350.0" />
+                    </children>
+                </VBox>
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="918.0">
+                    <children>
+                  <ScrollPane prefHeight="664.0" prefWidth="918.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefWidth="920.0">
+                           <children>
+                              <VBox maxHeight="1.7976931348623157E308" prefWidth="920.0">
+                                 <children>
+                                          <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="36.0" prefWidth="568.0">
+                                              <columnConstraints>
+                                                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="494.0" minWidth="10.0" />
+                                                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="648.0" minWidth="10.0" prefWidth="370.0" />
+                                              </columnConstraints>
+                                              <rowConstraints>
+                                                  <RowConstraints valignment="BASELINE" vgrow="SOMETIMES" />
+                                              </rowConstraints>
+                                              <children>
+                                                  <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" text="Identificador">
+                                                      <font>
+                                                          <Font name="SansSerif Bold Italic" size="30.0" />
+                                                      </font>
+                                                      <opaqueInsets>
+                                                          <Insets />
+                                                      </opaqueInsets>
+                                                      <GridPane.margin>
+                                                          <Insets left="30.0" right="15.0" />
+                                                      </GridPane.margin>
+                                                  </Label>
+                                                  <TextField fx:id="txtfFechaIng" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" text="29-04-24" GridPane.columnIndex="1">
+                                                      <font>
+                                                          <Font name="SansSerif Regular" size="28.0" />
+                                                      </font>
+                                                      <padding>
+                                                          <Insets left="30.0" />
+                                                      </padding>
+                                                      <GridPane.margin>
+                                                          <Insets left="15.0" />
+                                                      </GridPane.margin>
+                                                  </TextField>
+                                              </children>
+                                          </GridPane>
+                                    <Separator prefWidth="200.0" />
+                                    <Label text="Descripcion del servicio">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="32.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="40.0" top="40.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Tipo de servicio">
+                                             <font>
+                                                <Font name="SansSerif Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField editable="false" prefHeight="40.0" prefWidth="300.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Label minWidth="280.0" prefWidth="280.0" text="Descripción general">
+                                             <font>
+                                                <Font name="SansSerif Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextArea editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Label minWidth="280.0" prefWidth="280.0" text="Descripción Mecanico">
+                                             <font>
+                                                <Font name="SansSerif Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextArea editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Label minWidth="280.0" prefWidth="280.0" text="Descripción Hojalateria">
+                                             <font>
+                                                <Font name="SansSerif Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextArea editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Label minWidth="280.0" prefWidth="280.0" text="Descripción Pintura">
+                                             <font>
+                                                <Font name="SansSerif Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextArea editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Label minWidth="280.0" prefWidth="280.0" text="Descripción Eléctricos">
+                                             <font>
+                                                <Font name="SansSerif Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextArea editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <Separator prefWidth="200.0" />
+                                    <Label text="Fechas">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="32.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="40.0" top="40.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Fecha estimada de entrega">
+                                             <font>
+                                                <Font name="SansSerif Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField editable="false" prefHeight="40.0" prefWidth="300.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Fecha del trámite">
+                                             <font>
+                                                <Font name="SansSerif Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField editable="false" prefHeight="40.0" prefWidth="300.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="40.0" right="40.0" />
+                                       </padding>
+                                    </HBox>
+                                    <Separator prefWidth="200.0" />
+                                    <Label text="Información cliente">
+                                       <font>
+                                          <Font name="SansSerif Bold" size="32.0" />
+                                       </font>
+                                       <VBox.margin>
+                                          <Insets left="40.0" top="40.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Nombre completo del cliente">
+                                             <font>
+                                                <Font name="SansSerif Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField editable="false" prefHeight="40.0" prefWidth="300.0" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Vehiculo en servicio">
+                                             <font>
+                                                <Font name="SansSerif Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField editable="false" prefHeight="40.0" prefWidth="300.0" text="marca y modelo y año" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                    <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
+                                       <children>
+                                          <Label text="Información de contacto">
+                                             <font>
+                                                <Font name="SansSerif Bold" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField editable="false" prefHeight="40.0" prefWidth="300.0" text="telefono1 y correo" />
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
+                                       </padding>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+    </children>
+</VBox>
