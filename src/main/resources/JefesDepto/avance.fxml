@@ -78,7 +78,7 @@
                         <Insets right="30.0" />
                      </GridPane.margin>
                   </Label>
-                  <TextField fx:id="txtfServicio2" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" promptText="placa - fecha - tipo" GridPane.columnIndex="1">
+                  <TextField fx:id="txtfServicio2" editable="false" maxHeight="-Infinity" promptText="placa - fecha - tipo" GridPane.columnIndex="1">
                      <font>
                         <Font name="SansSerif Regular" size="20.0" />
                      </font>

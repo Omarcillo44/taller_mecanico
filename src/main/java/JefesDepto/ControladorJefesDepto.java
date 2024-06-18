@@ -1,13 +1,19 @@
 package JefesDepto;
-
+import javafx.event.ActionEvent;
+import Acceso.Main;
+import Acceso.VistaAcceso;
 import BD.ControladorBD;
+import BD.ModeloBD;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -15,6 +21,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import static CRUD.VistaCRUD.*;
+import static JefesDepto.ModeloJefesDepto.cargarImagen;
 
 public class ControladorJefesDepto extends ControladorBD implements Initializable {
 
@@ -70,8 +77,16 @@ public class ControladorJefesDepto extends ControladorBD implements Initializabl
     }
 
     // Método para iniciar la vista de Jefes de Departamento
-    public static void iniciaVistaJefesDepto(String[] args) {
-        VistaJefesDepto.launchApp(args);
+    public static void iniciaVistaJefesDepto(String[] args, String rfc) {
+        rfcPer = rfc;
+        // Ejecutar la inicialización en el hilo JavaFX
+        Platform.runLater(() -> {
+            try {
+                new VistaJefesDepto().start(new Stage());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     // Método para cerrar la conexión a la base de datos
@@ -83,7 +98,7 @@ public class ControladorJefesDepto extends ControladorBD implements Initializabl
 
     private void recuperaDatos() throws SQLException {
         try {
-            listaResultados = operBD.recuperaDatos(); // Método del Modelo
+            listaResultados = operBD.recuperaDatos(rfcPer); // Método del Modelo
 
             // Verificar que la lista no esté vacía y tenga al menos 17 elementos
             if (listaResultados.size() >= 17) {
@@ -105,15 +120,21 @@ public class ControladorJefesDepto extends ControladorBD implements Initializabl
                 descEdoVeh = listaResultados.get(15);
 
                 if (listaResultados.get(16) == null || listaResultados.get(16).equals("NULL")) {
-                    nuevoPorcAv = "0";
+                    porcAv = "0";
                 } else {
                     porcAv = listaResultados.get(16);
                 }
             } else {
                 mostrarAlertError("No hay trabajos asignados");
-                confirmacion = mostrarAlertConfirmacion("¿Desea volver a buscar trabajos disponibles?");
-                inializacionPrincipal = false; // Marcar como inicializado
-                colocaDatosServicio();
+                mostrarAlertInfo("¿Desea volver a buscar trabajos disponibles?");
+                Platform.runLater(() -> {
+                    try {
+                         new VistaAcceso().start(new Stage());
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                });
             }
         } catch (IndexOutOfBoundsException e) {
             mostrarAlertError("Error al acceder a los datos: " + e.getMessage());
@@ -149,16 +170,6 @@ public class ControladorJefesDepto extends ControladorBD implements Initializabl
         cargarImagen(foto2 +".jpg", imgPosterior);
         cargarImagen(foto3+".jpg", imgIzq);
         cargarImagen(foto4 +".jpg", imgDer);
-    }
-
-    // Método para cargar una imagen en un ImageView
-    private void cargarImagen(String nombreImagen, ImageView imageView) {
-        try {
-            Image imagen = new Image(getClass().getResourceAsStream("/ImagenesVehiculos/" + nombreImagen));
-            imageView.setImage(imagen);
-        } catch (Exception e) {
-            mostrarAlertError("Error al cargar la imagen " + nombreImagen + ": " + e.getMessage());
-        }
     }
 
     // Método para mostrar la ventana de avance
@@ -197,7 +208,7 @@ public class ControladorJefesDepto extends ControladorBD implements Initializabl
                     "Se emitirá un reporte al Jefe del Taller.");
             imprevistoAv = "TRUE"; //El atributo indica que es un reporte al Jefe del Taller
 
-        } else if (progSlider.isDisabled()){
+        } else if (progSlider.isDisabled()){ //La barra deshabilitada indica que será un reporte y no se actualizará el avance
             mostrarAlertWarning("Se emitirá un reporte al Jefe del Taller.");
             imprevistoAv = "TRUE"; //El atributo indica que es un reporte al Jefe del Taller
         }
@@ -213,17 +224,18 @@ public class ControladorJefesDepto extends ControladorBD implements Initializabl
 
         confirmacion = mostrarAlertConfirmacion("¿Está seguro que quiere informar un " +
                 "avance de " + nuevoPorcAv + "%?");
-        if (confirmacion) {
+        if (confirmacion && !(txtaDescAv.getText().trim() == null || txtaDescAv.getText().trim().isEmpty())) {
             try {
-                operBD.nuevoInforme("RFC12345A1", placaVeh, tipoServ, fechaTramite,
-                        nuevoPorcAv, txtaDescAv.getText(), imprevistoAv);
+
+                operBD.nuevoInforme("RFC12345A1", placaVeh, tipoServ, fechaTramite, nuevoPorcAv, txtaDescAv.getText().trim(), imprevistoAv);
                 VistaJefesDepto.recargarEscenaPrincipal();
                 Stage stageActual = (Stage) btnConfirmar.getScene().getWindow();
                 stageActual.close(); // Cierra la ventana actual de reporte de avance
             } catch (SQLException e) {
                 mostrarAlertError("Error al recuperar datos: " + e.getMessage());
             }
-
+        } else {
+            mostrarAlertError("La descripción no puede estar vacía");
         }
     }
 
@@ -238,9 +250,7 @@ public class ControladorJefesDepto extends ControladorBD implements Initializabl
     public void onClickCancelar(){
         // Obtener el Stage asociado al botón
         Stage stageActual = (Stage) btnCancelar.getScene().getWindow();
-
         // Cerrar la ventana
         stageActual.close();
     }
-
 }
