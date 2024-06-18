@@ -10,7 +10,6 @@ module com.example.taller_mecanico {
     exports JefesDepto;
     opens JefesDepto to javafx.fxml;
 
-    exports Acceso;
-    opens Acceso to javafx.fxml;
-
+    exports Servicios;
+    opens Servicios to javafx.fxml;
 }
