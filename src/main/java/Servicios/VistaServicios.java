@@ -13,8 +13,6 @@ public class VistaServicios extends Application{
 
     private static ControladorServicios controladorServicios;
 
-
-
     @Override
     public void start(Stage servicios) throws IOException {
         FXMLLoader mainLoader  = new FXMLLoader(VistaServicios.class.getResource("agendarServicios.fxml"));
