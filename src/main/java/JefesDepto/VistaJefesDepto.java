@@ -10,10 +10,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class VistaJefesDepto extends Application {
-
     private static ControladorJefesDepto controladorJefesDepto;
-
-
 
     @Override
     public void start(Stage jefesDepto) throws IOException {
@@ -46,6 +43,7 @@ public class VistaJefesDepto extends Application {
         Stage newStage = new Stage();
         FXMLLoader submoduleLoader = new FXMLLoader(VistaJefesDepto.class.getResource("avance.fxml"));
         Parent root = submoduleLoader.load();
+
 
         // Aquí obtenemos el controlador del nuevo FXML
         ControladorJefesDepto submoduleController = submoduleLoader.getController();
