@@ -192,6 +192,7 @@ public class ControladorJefesDepto extends ControladorBD implements Initializabl
     }
 
     public void onClickReportaAvance() {
+
         porcAvInt = Integer.parseInt(porcAv); //Pasamos a int el porcentaje de avance actual
         nuevoPorcAvInt = Integer.parseInt(nuevoPorcAv);//Pasamos a int el nuevo  porcentaje de avance actual
 
@@ -228,6 +229,7 @@ public class ControladorJefesDepto extends ControladorBD implements Initializabl
                 VistaJefesDepto.recargarEscenaPrincipal();
                 Stage stageActual = (Stage) btnConfirmar.getScene().getWindow();
                 stageActual.close(); // Cierra la ventana actual de reporte de avance
+                nuevoPorcAvInt = 0;
             } catch (SQLException e) {
                 mostrarAlertError("Error al recuperar datos: " + e.getMessage());
             }
