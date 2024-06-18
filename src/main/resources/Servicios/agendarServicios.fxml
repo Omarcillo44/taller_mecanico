@@ -141,10 +141,6 @@
                                                 <Font size="18.0" />
                                             </font>
                                         </RadioButton>
-                                    </children>
-                                </HBox>
-                                <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="75.0" prefWidth="200.0" spacing="10.0">
-                                    <children>
 
                                         <Label maxWidth="1.7976931348623157E308" text="Fecha del trámite:">
                                             <font>
@@ -156,17 +152,33 @@
                                         </Label>
                                         <DatePicker fx:id="fechaTram">
                                  <HBox.margin>
-                                    <Insets right="50.0" />
+                                    <Insets />
                                  </HBox.margin></DatePicker>
+                                    </children>
+                                </HBox>
+                                <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="75.0" prefWidth="200.0" spacing="10.0">
+                                    <children>
                                         <Label maxWidth="1.7976931348623157E308" text="Fecha estimada ingreso">
                                             <font>
                                                 <Font name="SansSerif Regular" size="18.0" />
                                             </font>
                                  <HBox.margin>
-                                    <Insets left="50.0" />
+                                    <Insets />
                                  </HBox.margin>
                                         </Label>
-                                        <DatePicker fx:id="fechaIngr" />
+                                        <DatePicker fx:id="fechaIngr">
+                                 <HBox.margin>
+                                    <Insets right="50.0" />
+                                 </HBox.margin></DatePicker>
+                              <Label maxWidth="1.7976931348623157E308" text="Fecha estimada entrega">
+                                 <font>
+                                    <Font name="SansSerif Regular" size="18.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="50.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <DatePicker fx:id="fechaEntr" />
                                     </children>
                                 </HBox>
                                 <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
