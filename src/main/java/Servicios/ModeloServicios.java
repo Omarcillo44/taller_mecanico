@@ -53,5 +53,23 @@ public class ModeloServicios extends BD.ModeloBD{
         return OperacionBD();
     }
 
+    //
+    public List<String> consultaServicios() throws SQLException {
+        // Construyes la consulta SQL con los parámetros proporcionados
+        String comando = "select placa_veh,fecha_tramite_serv,tipo_serv from servicio;";
+        setComando(comando, "consulta");
+        return OperacionBD();
+    }
 
+    //
+    public List<String> consultaDatosServ(String placa, String fecha, String tipo) throws SQLException {
+        // Construyes la consulta SQL con los parámetros proporcionados
+        String comando = "select servicio.tipo_serv,desc_gral_serv,desc_meca_serv,desc_hojal_serv,desc_pint_serv,desc_elect_serv,vehiculos.modelo_veh,marca_veh,clientes.nom_cli,app_cli,tel1_cli " +
+                "from vehiculos " +
+                "inner join servicio on vehiculos.placa_veh = servicio.placa_veh " +
+                "inner join clientes on servicio.rfc_cli = clientes.rfc_cli " +
+                "where servicio.placa_veh = '"+placa+"'and servicio.fecha_tramite_serv = '"+fecha+"' and servicio.tipo_serv = "+tipo+";";
+        setComando(comando, "consulta");
+        return OperacionBD();
+    }
 }

@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Servicios.ControladorServicios">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Servicios.ControladorVistaServ">
     <children>
         <ToolBar prefWidth="1280.0">
             <items>
@@ -58,7 +58,7 @@
             <children>
                 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0">
                     <children>
-                        <ListView prefHeight="654.0" prefWidth="350.0" />
+                        <ListView fx:id="listaServicios" prefHeight="654.0" prefWidth="350.0" />
                     </children>
                 </VBox>
                 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="918.0">
@@ -89,7 +89,7 @@
                                                           <Insets left="30.0" right="15.0" />
                                                       </GridPane.margin>
                                                   </Label>
-                                                  <TextField fx:id="txtfFechaIng" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" text="29-04-24" GridPane.columnIndex="1">
+                                                  <TextField fx:id="txtfFechaIng" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="32.0" GridPane.columnIndex="1">
                                                       <font>
                                                           <Font name="SansSerif Regular" size="28.0" />
                                                       </font>
@@ -118,7 +118,10 @@
                                                 <Font name="SansSerif Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextField editable="false" prefHeight="40.0" prefWidth="300.0" />
+                                          <TextField fx:id="tipoServ" editable="false" prefHeight="40.0" prefWidth="300.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></TextField>
                                        </children>
                                        <padding>
                                           <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
@@ -131,7 +134,10 @@
                                                 <Font name="SansSerif Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextArea editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                          <TextArea fx:id="descGen" editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></TextArea>
                                        </children>
                                        <padding>
                                           <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
@@ -144,7 +150,10 @@
                                                 <Font name="SansSerif Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextArea editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                          <TextArea fx:id="descMec" editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></TextArea>
                                        </children>
                                        <padding>
                                           <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
@@ -157,7 +166,10 @@
                                                 <Font name="SansSerif Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextArea editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                          <TextArea fx:id="descHoj" editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></TextArea>
                                        </children>
                                        <padding>
                                           <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
@@ -170,7 +182,10 @@
                                                 <Font name="SansSerif Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextArea editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                          <TextArea fx:id="descPin" editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></TextArea>
                                        </children>
                                        <padding>
                                           <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
@@ -183,14 +198,17 @@
                                                 <Font name="SansSerif Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextArea editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+                                          <TextArea fx:id="descEle" editable="false" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></TextArea>
                                        </children>
                                        <padding>
                                           <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
                                        </padding>
                                     </HBox>
                                     <Separator prefWidth="200.0" />
-                                    <Label text="Fechas">
+                                    <Label text="Información vehiculo">
                                        <font>
                                           <Font name="SansSerif Bold" size="32.0" />
                                        </font>
@@ -200,12 +218,15 @@
                                     </Label>
                                     <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
                                        <children>
-                                          <Label text="Fecha estimada de entrega">
+                                          <Label text="Modelo">
                                              <font>
                                                 <Font name="SansSerif Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextField editable="false" prefHeight="40.0" prefWidth="300.0" />
+                                          <TextField fx:id="modeloV" editable="false" prefHeight="40.0" prefWidth="300.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></TextField>
                                        </children>
                                        <padding>
                                           <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
@@ -213,12 +234,15 @@
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
                                        <children>
-                                          <Label text="Fecha del trámite">
+                                          <Label text="Marca">
                                              <font>
                                                 <Font name="SansSerif Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextField editable="false" prefHeight="40.0" prefWidth="300.0" />
+                                          <TextField fx:id="marcaV" editable="false" prefHeight="40.0" prefWidth="300.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></TextField>
                                        </children>
                                        <padding>
                                           <Insets bottom="10.0" left="40.0" right="40.0" />
@@ -240,7 +264,10 @@
                                                 <Font name="SansSerif Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextField editable="false" prefHeight="40.0" prefWidth="300.0" />
+                                          <TextField fx:id="nomCli" editable="false" prefHeight="40.0" prefWidth="350.0">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font></TextField>
                                        </children>
                                        <padding>
                                           <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
@@ -248,25 +275,15 @@
                                     </HBox>
                                     <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
                                        <children>
-                                          <Label text="Vehiculo en servicio">
+                                          <Label text="Telefono contacto">
                                              <font>
                                                 <Font name="SansSerif Bold" size="24.0" />
                                              </font>
                                           </Label>
-                                          <TextField editable="false" prefHeight="40.0" prefWidth="300.0" text="marca y modelo y año" />
-                                       </children>
-                                       <padding>
-                                          <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
-                                       </padding>
-                                    </HBox>
-                                    <HBox alignment="CENTER_LEFT" prefHeight="80.0" prefWidth="200.0" spacing="10.0">
-                                       <children>
-                                          <Label text="Información de contacto">
+                                          <TextField fx:id="teleCli" editable="false" prefHeight="40.0" prefWidth="300.0">
                                              <font>
-                                                <Font name="SansSerif Bold" size="24.0" />
-                                             </font>
-                                          </Label>
-                                          <TextField editable="false" prefHeight="40.0" prefWidth="300.0" text="telefono1 y correo" />
+                                                <Font size="18.0" />
+                                             </font></TextField>
                                        </children>
                                        <padding>
                                           <Insets bottom="10.0" left="40.0" right="40.0" top="10.0" />
