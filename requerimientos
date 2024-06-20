@@ -1,0 +1,64 @@
+Requerimientos
+Se ha solicitado el diseño de un sistema de información para un taller de mecánica automotriz que realiza trabajos de mecánica general. Se requiere llevar el control de los automóviles y los clientes para llevar los registros históricos de las reparaciones de los automóviles, así como agendar los arreglos preventivos correspondientes (afinación y revisión de niveles, así como verificación de emisiones contaminantes). Además de contar con los procesos adecuados para hacer válida la garantía de los trabajos que se realicen. También se necesita tener actualizada la base de datos de los clientes para ponerse en contacto con ellos cuando un automóvil esté listo o cuando presente algún otro problema.
+
+Requerimientos funcionales
+RF001: el sistema permitirá al recepcionista registrar la información personal de los clientes.
+
+RF002: el sistema permitirá al recepcionista registrar la información del automóvil de los clientes.
+
+RF003: el sistema permitirá al recepcionista agendar el servicio de reparación o mantenimiento para un vehículo en específico.
+
+RF004: el sistema permitirá al recepcionista gestionar los datos de contacto de los clientes.
+
+RF005: el sistema permitirá al recepcionista visualizar la información de los servicios agendados, pasados, en curso y futuros. 
+
+RF006: el sistema permitirá al recepcionista registrar los pagos de los servicios agendados por los clientes.
+
+RF007: el sistema permitirá al recepcionista registrar la fecha y hora de entrada de un vehículo a un servicio agendado.
+
+RF008: el sistema asignará automáticamente los trabajos de los servicios que se tienen que realizar a los jefes de departamento, según corresponda.
+
+RF009: el sistema permitirá visualizar toda la información del vehículo y la descripción del trabajo requerido a cada jefe de departamento, según corresponda.
+
+RF010: el sistema permitirá a los jefes de departamento actualizar el estado del avance de los servicios que tengan asignados.
+
+RF011: el sistema permitirá a los jefes de departamento agregar una descripción del estado del vehículo con cada actualización del avance en el servicio correspondiente.
+
+RF012: el sistema permitirá a los jefes de departamento informar al jefe del taller cuando se suscite algún imprevisto en el servicio de un vehículo.
+
+RF013: el sistema marcará como completado un servicio cuando todos los jefes de departamento involucrados hayan marcado el avance de este como finalizado.
+
+RF013: el sistema permitirá al jefe del taller gestionar al personal.
+
+RF014: el sistema permitirá al jefe del taller gestionar toda la información de un servicio agendado 
+
+RF015: el sistema permitirá al jefe del taller gestionar los pagos de los servicios agendados.
+
+RF016: el sistema permitirá a cada miembro del personal y empleado iniciar sesión en el sistema.
+
+RF017: tras iniciar sesión, el sistema mostrará la interfaz gráfica correspondiente.
+
+Requerimientos no funcionales
+RNF001: la información personal de un cliente es: nombre completo, RFC, número de teléfono principal, número de teléfono secundario, correo electrónico, calle, número de casa, código postal, municipio y estado.
+
+RNF000: la información requerida del automóvil de un cliente es: placa, estado federativo de la placa, marca del vehículo, modelo, año, color y 4 fotografías del vehículo (frontales, frente y posterior).
+
+RNF002: la información requerida al momento de agendar un servicio es: tipo de servicio, fecha y hora en la que se recibirá vehículo, fecha estimada de entrega del vehículo, descripción general del servicio a realizar, descripción de los trabajos mecánicos requeridos, descripción de los trabajos de hojalatería requeridos, descripción de los trabajos de pintura requeridos, descripción de los trabajos eléctricos requeridos y descripción del estado del vehículo antes del servicio; además de un campo para indicar si el vehículo ya fue entregado al cliente. 
+
+RNF003: la información de contacto de los clientes que el recepcionista puede visualizar es: nombre completo, números de teléfono y correo electrónico.
+
+RNF004: la información de los pagos que el recepcionista puede gestionar es: servicio asociado al pago, monto del pago, método de pago, fecha en la que se efectuó el pago, y foto del recibo de pago. 
+
+RNF005: los datos de inicio de sesión para los miembros del personal son RFC como usuario, y una contraseña única de acuerdo en lo establecido en la norma ISO27001.
+
+RNF006: la base de datos del sistema será gestionada con PostgreSQL.
+
+RNF007: el sistema proporcionará una interfaz gráfica implementada en Java Swing.
+
+RNF008: la interfaz gráfica estará ajustada únicamente para un tamaño de pantalla de 1280 pixeles de alto por 720 pixeles de ancho.
+
+RNF009: la escala en la cual un jefe de departamento indica el avance de un servicio debe ser representada en la interfaz gráfica como una barra deslizante que avance únicamente en pasos de 25%, 50%, 75% o 100% ascendentes, yendo desde 0% hasta 100%.
+
+RNF010: la interfaz del producto 
+
+RNF011: todos los iconos usados deben tener una proporción cuadrada
